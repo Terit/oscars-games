@@ -1,0 +1,16 @@
+@page "/categories"
+@inject Data.Categories CatagoryData
+
+<h1>Start your ballot</h1>
+
+<ul>
+  @foreach (var cat in CatagoryData)
+  {
+    <li>
+      <NavLink href=@($"/categories/{@cat.Slug}")>@cat.Name</NavLink>
+    </li>
+  }
+</ul>
+
+@code {
+}

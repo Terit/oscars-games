@@ -1,0 +1,54 @@
+@page "/categories/{slug}"
+@inject NavigationManager Navigation
+@inject Data.Categories Categories
+@using oscars_games.Data
+
+<h1 class="mb-5">@category?.Name</h1>
+
+<EditForm Model="@categorySelection" OnSubmit="@HandleSubmit">
+  <InputRadioGroup @bind-Value="categorySelection.Selection">
+    @foreach (var nominee in category?.Nominees)
+    {
+      <div class="form-check">
+
+        <InputRadio Value="@nominee.Id" id="@nominee.Id" class="form-check-input" />
+        <label class="form-check-label" for="@nominee.Id">
+          <div class="mb-2">
+            <h5 class="fw-bold">@nominee.Name</h5>
+            <span class="fst-italic fw-lighter">@nominee.Metadata</span>
+          </div>
+        </label>
+      </div>
+    }
+  </InputRadioGroup>
+
+  <button class="btn btn-primary mt-4" type="submit">Select</button>
+</EditForm>
+
+@code {
+  [Parameter]
+  public string? Slug { get; set; }
+  public Data.Category? category { get; set; }
+  private CategorySelection categorySelection = new CategorySelection();
+
+  protected override void OnInitialized()
+  {
+    if (string.IsNullOrEmpty(Slug))
+    {
+      Navigation.NavigateTo("/categories");
+    }
+
+    category = new Category(Categories, Slug);
+
+    if (string.IsNullOrEmpty(category.Name))
+    {
+      Navigation.NavigateTo("/categories");
+    }
+  }
+
+  private void HandleSubmit()
+  {
+    Console.WriteLine(categorySelection.Selection);
+    Navigation.NavigateTo("/categories");
+  }
+}

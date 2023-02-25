@@ -1,0 +1,66 @@
+[
+  {
+    "Name": "Actor in a Leading Role",
+    "Slug": "actor-in-a-leading-role",
+    "Id": 1,
+    "Nominees": [
+      {
+        "Id": 1,
+        "Name": "Austin Butler",
+        "Metadata": "Elvis"
+      },
+      {
+        "Id": 2,
+        "Name": "Colin Farrell",
+        "Metadata": "The Banshees of Inisherin"
+      },
+      {
+        "Id": 3,
+        "Name": "Brendan Fraser",
+        "Metadata": "The Whale"
+      },
+      {
+        "Id": 4,
+        "Name": "Paul Mescal",
+        "Metadata": "Aftersun"
+      },
+      {
+        "Id": 5,
+        "Name": "Bill Nighy",
+        "Metadata": "Living"
+      }
+    ]
+  },
+  {
+    "Name": "Actor in a Supporting Role",
+    "Slug": "actor-in-a-supporting-role",
+    "Id": 2,
+    "Nominees": [
+      {
+        "Id": 1,
+        "Name": "Brendan Gleeson",
+        "Metadata": "The Banshees of Inisherin"
+      },
+      {
+        "Id": 2,
+        "Name": "Brian Tyree Henry",
+        "Metadata": "Causeway"
+      },
+      {
+        "Id": 3,
+        "Name": "Judd Hirsch",
+        "Metadata": "The Fablemans"
+      },
+      {
+        "Id": 4,
+        "Name": "Barry Keoghan",
+        "Metadata": "The Banshees of Inisherin"
+      },
+      {
+        "Id": 5,
+        "Name": "Ke Huy Quan",
+        "Metadata": "Everything Everywhere All at Once"
+      }
+    ]
+  }
+]
