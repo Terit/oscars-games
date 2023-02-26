@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="../build/oscars-games.props" />
-</Project>
