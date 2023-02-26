@@ -13,80 +13,6 @@
   "ProjectWorkspaceState": {
     "TagHelpers": [
       {
-        "HashCode": 1115735093,
-        "Kind": "Components.Component",
-        "Name": "oscars_games.Pages.Categories",
-        "AssemblyName": "oscars-games",
-        "CaseSensitive": true,
-        "TagMatchingRules": [
-          {
-            "TagName": "Categories"
-          }
-        ],
-        "Metadata": {
-          "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "oscars_games.Pages.Categories",
-          "Common.TypeNamespace": "oscars_games.Pages",
-          "Common.TypeNameIdentifier": "Categories"
-        }
-      },
-      {
-        "HashCode": 407303263,
-        "Kind": "Components.Component",
-        "Name": "oscars_games.Pages.Categories",
-        "AssemblyName": "oscars-games",
-        "CaseSensitive": true,
-        "TagMatchingRules": [
-          {
-            "TagName": "oscars_games.Pages.Categories"
-          }
-        ],
-        "Metadata": {
-          "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "oscars_games.Pages.Categories",
-          "Common.TypeNamespace": "oscars_games.Pages",
-          "Common.TypeNameIdentifier": "Categories",
-          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
-        }
-      },
-      {
-        "HashCode": 1488688264,
-        "Kind": "Components.Component",
-        "Name": "oscars_games.Pages.FetchData",
-        "AssemblyName": "oscars-games",
-        "CaseSensitive": true,
-        "TagMatchingRules": [
-          {
-            "TagName": "FetchData"
-          }
-        ],
-        "Metadata": {
-          "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "oscars_games.Pages.FetchData",
-          "Common.TypeNamespace": "oscars_games.Pages",
-          "Common.TypeNameIdentifier": "FetchData"
-        }
-      },
-      {
-        "HashCode": -442807212,
-        "Kind": "Components.Component",
-        "Name": "oscars_games.Pages.FetchData",
-        "AssemblyName": "oscars-games",
-        "CaseSensitive": true,
-        "TagMatchingRules": [
-          {
-            "TagName": "oscars_games.Pages.FetchData"
-          }
-        ],
-        "Metadata": {
-          "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "oscars_games.Pages.FetchData",
-          "Common.TypeNamespace": "oscars_games.Pages",
-          "Common.TypeNameIdentifier": "FetchData",
-          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
-        }
-      },
-      {
         "HashCode": -753683955,
         "Kind": "Components.Component",
         "Name": "oscars_games.Pages.Index",
@@ -179,6 +105,43 @@
           "Common.TypeName": "oscars_games.Pages.CategoryForm",
           "Common.TypeNamespace": "oscars_games.Pages",
           "Common.TypeNameIdentifier": "CategoryForm",
+          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
+        }
+      },
+      {
+        "HashCode": 1115735093,
+        "Kind": "Components.Component",
+        "Name": "oscars_games.Pages.Categories",
+        "AssemblyName": "oscars-games",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "Categories"
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "oscars_games.Pages.Categories",
+          "Common.TypeNamespace": "oscars_games.Pages",
+          "Common.TypeNameIdentifier": "Categories"
+        }
+      },
+      {
+        "HashCode": 407303263,
+        "Kind": "Components.Component",
+        "Name": "oscars_games.Pages.Categories",
+        "AssemblyName": "oscars-games",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "oscars_games.Pages.Categories"
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "oscars_games.Pages.Categories",
+          "Common.TypeNamespace": "oscars_games.Pages",
+          "Common.TypeNameIdentifier": "Categories",
           "Components.NameMatch": "Components.FullyQualifiedNameMatch"
         }
       },
