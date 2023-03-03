@@ -12,11 +12,9 @@
     if (authState.User.Identity == null || !authState.User.Identity.IsAuthenticated)
     {
       var currentURI = Navigation.ToBaseRelativePath(Navigation.Uri) ?? "";
-      Console.WriteLine(currentURI);
       if (currentURI.Contains("ballot"))
       {
         var redirectURI = currentURI.Replace("ballot", "");
-        Console.WriteLine(redirectURI);
         Navigation.NavigateTo(redirectURI);
         return;
       }
