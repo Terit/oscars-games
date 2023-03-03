@@ -7,7 +7,7 @@
   @foreach (var cat in CatagoryData)
   {
     <li>
-      <NavLink href=@($"/categories/{@cat.Slug}")>@cat.Name</NavLink>
+      <NavLink href=@($"/categories/ballot/{@cat.Slug}")>@cat.Name</NavLink>
     </li>
   }
 </ul>

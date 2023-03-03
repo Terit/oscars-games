@@ -1,0 +1,47 @@
+@page "/categories/{slug}"
+@inject NavigationManager Navigation
+@inject Data.Categories Categories
+@inject AuthenticationStateProvider AuthState
+@using oscars_games.Data
+
+<h1 class="mb-5">@category?.Name</h1>
+
+<ul class="mb-4 list-group">
+  @foreach (var nominee in category?.Nominees)
+  {
+    <li class="list-group-item">
+      <h5 class="fw-bold">@nominee.Name</h5>
+      <span class="fst-italic fw-lighter">@nominee.Metadata</span>
+    </li>
+  }
+</ul>
+
+<a href="/categories" class="btn btn-primary">Back</a>
+
+@code {
+  [Parameter]
+  public string? Slug { get; set; }
+  public Data.Category? category { get; set; }
+  private CategorySelection categorySelection = new CategorySelection();
+
+  protected override void OnInitialized()
+  {
+    if (string.IsNullOrEmpty(Slug))
+    {
+      Navigation.NavigateTo("/categories");
+    }
+
+    category = new Category(Categories, Slug);
+
+    if (string.IsNullOrEmpty(category.Name))
+    {
+      Navigation.NavigateTo("/categories");
+    }
+  }
+
+  private void HandleSubmit()
+  {
+    Console.WriteLine(categorySelection.Selection);
+    Navigation.NavigateTo("/categories");
+  }
+}

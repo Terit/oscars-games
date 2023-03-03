@@ -1,6 +1,8 @@
-@page "/categories/{slug}"
+@page "/categories/ballot/{slug}"
+@attribute [Authorize]
 @inject NavigationManager Navigation
 @inject Data.Categories Categories
+@inject AuthenticationStateProvider AuthState
 @using oscars_games.Data
 
 <h1 class="mb-5">@category?.Name</h1>
@@ -31,8 +33,25 @@
   public Data.Category? category { get; set; }
   private CategorySelection categorySelection = new CategorySelection();
 
-  protected override void OnInitialized()
+  private string Username = "Anonymous User";
+  private string Picture = "";
+
+  protected override async Task OnInitializedAsync()
   {
+    var state = await AuthState.GetAuthenticationStateAsync();
+
+    if (state.User.Identity == null)
+    {
+      Navigation.NavigateTo($"/categories/{Slug}");
+    }
+
+    Username = state.User.Identity.Name ?? string.Empty;
+
+    Picture = state.User.Claims
+    .Where(c => c.Type.Equals("picture"))
+    .Select(c => c.Value)
+    .FirstOrDefault() ?? string.Empty;
+
     if (string.IsNullOrEmpty(Slug))
     {
       Navigation.NavigateTo("/categories");
@@ -44,6 +63,8 @@
     {
       Navigation.NavigateTo("/categories");
     }
+
+    await base.OnInitializedAsync();
   }
 
   private void HandleSubmit()
