@@ -12,7 +12,7 @@ public class LogoutModel : PageModel
     public async Task OnGet()
     {
         var authenticationProperties = new LogoutAuthenticationPropertiesBuilder()
-            .WithRedirectUri("/Index")
+            .WithRedirectUri("/")
             .Build();
 
         await HttpContext.SignOutAsync(
