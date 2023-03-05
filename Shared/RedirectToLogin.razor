@@ -14,8 +14,8 @@
       var currentURI = Navigation.ToBaseRelativePath(Navigation.Uri) ?? "";
       if (currentURI.Contains("ballot"))
       {
-        var redirectURI = currentURI.Replace("ballot", "");
-        Navigation.NavigateTo(redirectURI);
+        var redirectURI = currentURI.Replace("ballot/", "");
+        Navigation.NavigateTo(redirectURI, replace: true);
         return;
       }
 
