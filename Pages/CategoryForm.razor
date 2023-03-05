@@ -1,9 +1,12 @@
 @page "/categories/ballot/{slug}"
 @attribute [Authorize]
+@using oscars_games.Data
+@using oscars_games.Interfaces
+@using System.Security.Claims
 @inject NavigationManager Navigation
 @inject Data.Categories Categories
 @inject AuthenticationStateProvider AuthState
-@using oscars_games.Data
+@inject ICategoryService CategoryData
 
 <h1 class="mb-5">@category?.Name</h1>
 
@@ -25,6 +28,7 @@
   </InputRadioGroup>
 
   <button class="btn btn-primary mt-4" type="submit">Select</button>
+  @Selection?.UserId
 </EditForm>
 
 @code {
@@ -33,21 +37,24 @@
   public Data.Category? category { get; set; }
   private CategorySelection categorySelection = new CategorySelection();
 
+  private string UserId = "";
   private string Username = "Anonymous User";
   private string Picture = "";
+  private CategorySelection? Selection = null;
 
   protected override async Task OnInitializedAsync()
   {
-    var state = await AuthState.GetAuthenticationStateAsync();
+    var auth = await AuthState.GetAuthenticationStateAsync();
 
-    if (state.User.Identity == null)
+    if (auth.User.Identity == null)
     {
       Navigation.NavigateTo($"/categories/{Slug}");
     }
 
-    Username = state.User.Identity.Name ?? string.Empty;
+    Username = auth.User.Identity.Name ?? string.Empty;
+    UserId = auth.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value;
 
-    Picture = state.User.Claims
+    Picture = auth.User.Claims
     .Where(c => c.Type.Equals("picture"))
     .Select(c => c.Value)
     .FirstOrDefault() ?? string.Empty;
@@ -64,12 +71,19 @@
       Navigation.NavigateTo("/categories");
     }
 
+    Selection = await CategoryData.GetUserSelection(UserId, category.Id);
+
+    if (Selection != null)
+    {
+      categorySelection.Selection = Selection.Selection;
+    }
+
     await base.OnInitializedAsync();
   }
 
-  private void HandleSubmit()
+  private async Task HandleSubmit()
   {
-    Console.WriteLine(categorySelection.Selection);
+    await CategoryData.SaveUserSelection(UserId, category.Id, categorySelection.Selection);
     Navigation.NavigateTo("/categories");
   }
 }

@@ -8,7 +8,6 @@ namespace oscars_games.Pages;
 
 public class LogoutModel : PageModel
 {
-    [Authorize]
     public async Task OnGet()
     {
         var authenticationProperties = new LogoutAuthenticationPropertiesBuilder()

@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Components.Web;
 using Auth0.AspNetCore.Authentication;
 using System.Text.Json;
 using oscars_games.Data;
+using Microsoft.EntityFrameworkCore;
+using oscars_games.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +13,18 @@ builder.Services.AddAuth0WebAppAuthentication(options =>
     options.Domain = builder.Configuration["Auth0:Domain"];
     options.ClientId = builder.Configuration["Auth0:ClientId"];
 });
+
+builder.Services.AddDbContextFactory<CosmosDbContext>(options =>
+{
+    options.UseCosmos(
+        builder.Configuration["Cosmos:Endpoint"],
+        builder.Configuration["Cosmos:AccessKey"],
+        builder.Configuration["Cosmos:Database"]
+    );
+});
+
+builder.Services.AddScoped<ICategoryService, CategoryService>();
+builder.Services.AddScoped<IUserSelectionRepository, UserSelectionRepository>();
 
 // Add services to the container.
 builder.Services.AddRazorPages();
