@@ -32,7 +32,6 @@ public class UserSelectionRepository : IUserSelectionRepository
 
     public async Task Update(CategorySelection categorySelection)
     {
-        var existing = _dbContext.UserSelections.Find(categorySelection.Uid);
         _dbContext.UserSelections.Update(categorySelection);
         await _dbContext.SaveChangesAsync();
     }

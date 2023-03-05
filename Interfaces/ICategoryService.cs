@@ -8,4 +8,5 @@ public interface ICategoryService
     Task<List<CategorySelection>> GetAllUserSelections();
 
     Task SaveUserSelection(string userId, int categoryId, int nomineeId);
+    Task SaveUserSelection(CategorySelection selection);
 }

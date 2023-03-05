@@ -21,6 +21,18 @@ public class CategoryService : ICategoryService
 
     public async Task SaveUserSelection(string userId, int categoryId, int nomineeId)
     {
-        var record = await _userSelectionRepository.Get(userId, categoryId);
+        var selection = new CategorySelection()
+        {
+            UserId = userId,
+            CategoryId = categoryId,
+            Selection = nomineeId
+        };
+
+        await _userSelectionRepository.Add(selection);
+    }
+
+    public async Task SaveUserSelection(CategorySelection selection)
+    {
+        await _userSelectionRepository.Update(selection);
     }
 }

@@ -12,7 +12,7 @@
 
 <EditForm Model="@categorySelection" OnSubmit="@HandleSubmit">
   <InputRadioGroup @bind-Value="categorySelection.Selection">
-    @foreach (var nominee in category?.Nominees)
+    @foreach (var nominee in category!.Nominees)
     {
       <div class="form-check">
 
@@ -28,7 +28,6 @@
   </InputRadioGroup>
 
   <button class="btn btn-primary mt-4" type="submit">Select</button>
-  @Selection?.UserId
 </EditForm>
 
 @code {
@@ -40,7 +39,7 @@
   private string UserId = "";
   private string Username = "Anonymous User";
   private string Picture = "";
-  private CategorySelection? Selection = null;
+  private CategorySelection Selection;
 
   protected override async Task OnInitializedAsync()
   {
@@ -48,7 +47,7 @@
 
     if (auth.User.Identity == null)
     {
-      Navigation.NavigateTo($"/categories/{Slug}");
+      Navigation.NavigateTo($"/categories/{Slug}", replace: true);
     }
 
     Username = auth.User.Identity.Name ?? string.Empty;
@@ -83,7 +82,16 @@
 
   private async Task HandleSubmit()
   {
-    await CategoryData.SaveUserSelection(UserId, category.Id, categorySelection.Selection);
+    if (Selection != null)
+    {
+      Selection.Selection = categorySelection.Selection;
+      await CategoryData.SaveUserSelection(Selection);
+    }
+    else
+    {
+      await CategoryData.SaveUserSelection(UserId, category.Id, categorySelection.Selection);
+    }
+
     Navigation.NavigateTo("/categories");
   }
 }
