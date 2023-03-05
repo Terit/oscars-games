@@ -26,6 +26,8 @@ builder.Services.AddDbContextFactory<CosmosDbContext>(options =>
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<IUserSelectionRepository, UserSelectionRepository>();
 
+builder.Services.Configure<Settings>(builder.Configuration.GetSection("Settings"));
+
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();

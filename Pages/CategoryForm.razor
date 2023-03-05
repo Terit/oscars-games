@@ -3,10 +3,12 @@
 @using oscars_games.Data
 @using oscars_games.Interfaces
 @using System.Security.Claims
+@using Microsoft.Extensions.Options
 @inject NavigationManager Navigation
 @inject Data.Categories Categories
 @inject AuthenticationStateProvider AuthState
 @inject ICategoryService CategoryData
+@inject IOptions<Settings> GameSettings
 
 <h1 class="mb-5">@category?.Name</h1>
 
@@ -16,7 +18,7 @@
     {
       <div class="form-check">
 
-        <InputRadio Value="@nominee.Id" id="@nominee.Id" class="form-check-input" />
+        <InputRadio Value="@nominee.Id" id="@nominee.Id" class="form-check-input" disabled="@IsDisabled" />
         <label class="form-check-label" for="@nominee.Id">
           <div class="mb-2">
             <h5 class="fw-bold">@nominee.Name</h5>
@@ -36,16 +38,19 @@
 @code {
   [Parameter]
   public string? Slug { get; set; }
-  public Data.Category? category { get; set; }
-  private CategorySelection categorySelection = new CategorySelection();
 
+  private Data.Category? category { get; set; }
+  private CategorySelection categorySelection = new CategorySelection();
   private string UserId = "";
   private string Username = "Anonymous User";
   private string Picture = "";
   private CategorySelection Selection;
+  private bool IsDisabled = false;
 
   protected override async Task OnInitializedAsync()
   {
+    IsDisabled = GameSettings.Value.CutoffDate < DateTime.UtcNow;
+
     var auth = await AuthState.GetAuthenticationStateAsync();
 
     if (auth.User.Identity == null)
