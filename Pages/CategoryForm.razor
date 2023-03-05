@@ -27,7 +27,10 @@
     }
   </InputRadioGroup>
 
-  <button class="btn btn-primary mt-4" type="submit">Select</button>
+  <div class="mt-4">
+    <button class="btn btn-secondary" type="button" @onclick="Back">Back</button>
+    <button class="btn btn-primary" type="submit">Select</button>
+  </div>
 </EditForm>
 
 @code {
@@ -92,6 +95,11 @@
       await CategoryData.SaveUserSelection(UserId, category.Id, categorySelection.Selection);
     }
 
+    Back();
+  }
+
+  private void Back()
+  {
     Navigation.NavigateTo("/categories");
   }
 }
